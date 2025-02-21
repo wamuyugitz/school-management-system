@@ -1,0 +1,28 @@
+.login-svg {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    min-height: 350px;
+}
+
+.login-card {
+    width: 450px;
+    max-width: 90%;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background: white;
+}
+
+label {
+    color: #333;
+    font-weight: 500;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.btn-dark {
+    border-radius: 8px;
+}
