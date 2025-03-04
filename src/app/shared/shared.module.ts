@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 // Angular Material Modules
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,6 +20,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion'; 
+
 
 const materialModules = [
   MatInputModule,
@@ -39,8 +42,10 @@ const materialModules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatSnackBarModule,
+  MatDividerModule,
+  MatProgressSpinnerModule,
+  MatExpansionModule,
 ];
-
 
 @NgModule({
   declarations: [],

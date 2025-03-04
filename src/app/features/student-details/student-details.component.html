@@ -1,0 +1,100 @@
+<div [formGroup]="studentForm" class="student-form">
+  <h2>Student Details</h2>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Admission Number</mat-label>
+    <input matInput formControlName="admissionNumber" [disabled]="true" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="firstName" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Date of Birth</mat-label>
+    <input matInput type="date" formControlName="dateofbirth" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Class</mat-label>
+    <input matInput formControlName="schoolClass" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Stream</mat-label>
+    <input matInput formControlName="stream" />
+  </mat-form-field>
+
+  <h3>Address</h3>
+  <div formGroupName="address">
+    <mat-form-field appearance="outline">
+      <mat-label>Street</mat-label>
+      <input matInput formControlName="street" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input matInput formControlName="city" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Country</mat-label>
+      <input matInput formControlName="country" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Postal Code</mat-label>
+      <input matInput formControlName="postalCode" />
+    </mat-form-field>
+  </div>
+
+  <h3>Parents Details</h3>
+  <div formArrayName="parentsDetails">
+    <div
+      *ngFor="let parent of parentsDetails.controls; let i = index"
+      [formGroupName]="i"
+      class="parent-form"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Relationship</mat-label>
+        <mat-select formControlName="relationship">
+          <mat-option value="Mother">Mother</mat-option>
+          <mat-option value="Father">Father</mat-option>
+          <mat-option value="Guardian">Guardian</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Number</mat-label>
+        <input matInput formControlName="contactNumber" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button *ngIf="!isEditMode" mat-raised-button color="primary" (click)="enableEditMode()">Edit</button>
+    <button *ngIf="isEditMode" mat-raised-button color="primary" (click)="saveChanges()">Save</button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </div>
+</div>

@@ -1,1 +1,81 @@
-<p>students works!</p>
+<div class="students-container">
+  <!-- Stats Cards -->
+  <div class="stats">
+    <mat-card class="stat-card">
+      <mat-card-title>Total Students</mat-card-title>
+      <mat-card-content>{{ totalStudents }}</mat-card-content>
+    </mat-card>
+    <mat-card class="stat-card">
+      <mat-card-title>Streams Available</mat-card-title>
+      <mat-card-content>{{ totalStreams }}</mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Search and Filters -->
+  <div class="table-header">
+    <mat-form-field appearance="outline">
+      <mat-label>Search Students by Admission no or Name</mat-label>
+      <input matInput (keyup)="applyFilter($event)">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Filter by Stream</mat-label>
+      <mat-select [(value)]="selectedStream" (selectionChange)="filterByStream()">
+        <mat-option *ngFor="let stream of streams" [value]="stream.streamName">{{ stream.streamName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="addStudent()">+ Add Student</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <!-- Admission Number Column -->
+      <ng-container matColumnDef="admissionNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Admission No </th>
+        <td mat-cell *matCellDef="let student"> {{ student.admissionNumber }} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let student"> {{ student.name }} </td>
+      </ng-container>
+
+      <!-- Date of Birth Column -->
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+        <td mat-cell *matCellDef="let student"> {{ student.dob }} </td>
+      </ng-container>
+
+      <!-- Stream Column -->
+      <ng-container matColumnDef="stream">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Stream </th>
+        <td mat-cell *matCellDef="let student"> {{ student.stream }} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let student">
+          <button mat-icon-button class="view-icon-button" (click)="viewStudent(student)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="editStudent(student)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteStudent(student)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Paginator -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

@@ -4,12 +4,17 @@ import { AuthModule } from './auth/auth.module';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' }, // Redirect empty path to auth
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' }, // Redirect empty path to auth
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-  //{ path: '**', redirectTo: 'auth' }, 
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./features/features.module').then((m) => m.FeaturesModule),
+  },
+  { path: '**', redirectTo: 'auth/login' },
 ];
 
 @NgModule({

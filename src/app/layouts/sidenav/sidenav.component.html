@@ -1,1 +1,46 @@
-<p>sidenav works!</p>
+<mat-sidenav-container class="sidenav-container">
+  
+  <!-- Sidebar -->
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [mode]="isSmallScreen ? 'over' : 'side'"
+    [opened]="isSidenavOpen"
+    [class.closed]="!isSidenavOpen"
+  >
+    <mat-nav-list>
+
+      <!-- 🔹 Toggle Button (Above Dashboard Link) -->
+      <button mat-icon-button class="menu-toggle" (click)="toggleSidenav()">
+        <mat-icon>{{ isSidenavOpen ? 'menu_open' : 'menu' }}</mat-icon>
+      </button>
+
+      <ng-container *ngFor="let item of menuItems">
+        <a
+          mat-list-item
+          [routerLink]="item.route"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span class="menu-text">{{ item.label }}</span>
+        </a>
+      </ng-container>
+
+      <mat-divider></mat-divider>
+
+      <a mat-list-item (click)="logout()">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span class="menu-text">Logout</span>
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main Content Area -->
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

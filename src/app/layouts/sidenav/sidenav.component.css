@@ -1,0 +1,134 @@
+.sidenav-container {
+    height: 100vh;
+}
+
+/* 🔹 Sidebar */
+.sidenav {
+    width: 250px;
+    background-color: #1a1a1a;
+    color: white;
+    overflow-x: hidden;
+    transition: width 0.3s ease-in-out;
+    white-space: nowrap;
+    /* Prevents text from wrapping */
+}
+
+/* 🔹 Collapsed Sidebar (Only Icons Visible) */
+.sidenav.closed {
+    width: 70px;
+}
+
+/* 🔹 Always Visible Toggle Button (Above Dashboard Link) */
+.menu-toggle {
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    color: white;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle mat-icon {
+    margin-right: 10px;
+}
+
+/* Default Link Styles */
+.mat-nav-list {
+    padding-top: 0;
+}
+
+.mat-nav-list a {
+    color: white !important;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: normal;
+    padding: 12px 16px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 4px;
+}
+
+.mat-nav-list a mat-icon {
+    margin-right: 10px;
+    color: white !important;
+    transition: color 0.3s ease-in-out;
+}
+
+.mat-nav-list a .menu-text {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.mat-nav-list a:hover {
+    background-color: rgba(29, 119, 239, 0.2) !important;
+}
+
+/* Active Link Styles */
+a.active-link {
+    background-color: white !important;
+    font-weight: bold;
+}
+
+a.active-link mat-icon {
+    color: #1d77ef !important;
+}
+
+a.active-link .menu-text {
+    color: #1d77ef !important;
+}
+
+/* Hide Text When Sidebar is Collapsed */
+.sidenav.closed .menu-text {
+    display: none;
+}
+
+/* Ensure icons remain visible in collapsed state */
+.sidenav.closed mat-icon {
+    margin-right: 0;
+    display: block;
+}
+
+/* Align icons properly in collapsed mode */
+.sidenav.closed a {
+    justify-content: center;
+    padding: 12px;
+}
+
+/* Expand Sidebar on Hover (Better UX) */
+.sidenav.closed:hover {
+    width: 250px;
+}
+
+/* Show menu text when hovered */
+.sidenav.closed:hover .menu-text {
+    display: inline;
+}
+
+/* Adjust icon and text alignment on hover */
+.sidenav.closed:hover a {
+    justify-content: flex-start;
+    padding: 12px 16px;
+}
+
+.sidenav.closed:hover mat-icon {
+    margin-right: 10px;
+}
+
+/* Divider Style */
+mat-divider {
+    margin: 16px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure Sidebar Works on Small Screens */
+@media (max-width: 768px) {
+    .sidenav {
+        width: 100%;
+    }
+
+    .sidenav.closed {
+        width: 70px;
+    }
+}

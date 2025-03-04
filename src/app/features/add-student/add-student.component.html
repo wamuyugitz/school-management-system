@@ -1,0 +1,130 @@
+<h2 mat-dialog-title>Add New Student</h2>
+
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <!-- Student Details -->
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Student Information </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput formControlName="dateofbirth" type="date" placeholder="YYYY-MM-DD" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Class</mat-label>
+          <input matInput formControlName="schoolClass" type="number" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Stream</mat-label>
+          <mat-select formControlName="stream" required>
+            <mat-option *ngFor="let stream of streams" [value]="stream.id">
+              {{ stream.streamName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <!-- Address Section -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Address Details </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Street</mat-label>
+          <input matInput formControlName="street" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" required />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <input matInput formControlName="country" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Postal Code</mat-label>
+          <input matInput formControlName="postalCode" required />
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <!-- Parent/Guardian Details -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Parent/Guardian Information </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="parentFirstName" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="parentLastName" required />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Relationship</mat-label>
+          <mat-select formControlName="relationship" required>
+            <mat-option *ngFor="let relation of relationships" [value]="relation">
+              {{ relation }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Number</mat-label>
+          <input matInput formControlName="contactNumber" type="tel" required />
+          <mat-error *ngIf="studentForm.get('contactNumber')?.invalid">
+            Enter a valid 10-digit number.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" required />
+        <mat-error *ngIf="studentForm.get('email')?.invalid">
+          Enter a valid email.
+        </mat-error>
+      </mat-form-field>
+    </mat-expansion-panel>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>
